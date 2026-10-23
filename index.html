@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rupesh Rawat | Portfolio & AI Suite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg: #090c10;
+      --card-bg: rgba(22, 27, 34, 0.75);
+      --card-border: rgba(240, 246, 252, 0.08);
+      --primary: #38bdf8;
+      --secondary: #818cf8;
+      --accent: #a855f7;
+      --text-main: #f0f6fc;
+      --text-muted: #8b949e;
+      --gradient: linear-gradient(135deg, #38bdf8, #818cf8, #a855f7);
+      --radius: 14px;
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Ambient Glows */
+    .glow-circle {
+      position: fixed;
+      width: 450px;
+      height: 450px;
+      border-radius: 50%;
+      filter: blur(120px);
+      z-index: -1;
+      opacity: 0.16;
+      pointer-events: none;
+    }
+    .glow-1 { top: -100px; left: -100px; background: #38bdf8; }
+    .glow-2 { bottom: 10%; right: -100px; background: #a855f7; }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      background: rgba(9, 12, 16, 0.85);
+      border-bottom: 1px solid var(--card-border);
+      padding: 18px 0;
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      font-weight: 800;
+      font-size: 1.3rem;
+      letter-spacing: -0.5px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 24px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    .nav-btn {
+      padding: 8px 18px;
+      background: var(--gradient);
+      color: #fff !important;
+      border-radius: 30px;
+      font-weight: 600 !important;
+      font-size: 0.88rem !important;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 90px 0 60px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 30px;
+      font-size: 0.85rem;
+      color: var(--primary);
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      letter-spacing: -1.5px;
+    }
+    .hero h1 span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      max-width: 680px;
+      margin: 0 auto 36px;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 12px 26px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+    .btn-primary {
+      background: var(--gradient);
+      color: white;
+      box-shadow: 0 4px 20px rgba(129, 140, 248, 0.35);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(129, 140, 248, 0.5);
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      border-color: var(--card-border);
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Sections Common */
+    section {
+      padding: 60px 0;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+    .section-subtitle {
+      color: var(--text-muted);
+      margin-bottom: 36px;
+      font-size: 1rem;
+    }
+
+    /* Grids & Cards */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 26px;
+      transition: var(--transition);
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56, 189, 248, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      color: var(--primary);
+    }
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--primary);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    /* Education Item */
+    .edu-card {
+      border-left: 3px solid var(--primary);
+      padding: 16px 20px;
+      background: rgba(22, 27, 34, 0.4);
+      margin-bottom: 16px;
+      border-radius: 0 10px 10px 0;
+    }
+    .edu-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .edu-inst {
+      color: var(--primary);
+      font-size: 0.92rem;
+      font-weight: 500;
+    }
+
+    /* AI Tool Terminal at the Bottom */
+    .ai-wrapper {
+      background: var(--card-bg);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(168, 85, 247, 0.1);
+      display: grid;
+      grid-template-columns: 280px 1fr;
+    }
+    @media (max-width: 850px) {
+      .ai-wrapper { grid-template-columns: 1fr; }
+    }
+    .ai-sidebar {
+      background: rgba(13, 17, 23, 0.9);
+      border-right: 1px solid var(--card-border);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .ai-tool-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+    .ai-presets {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .preset-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+    .preset-btn:hover {
+      background: rgba(168, 85, 247, 0.15);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .ai-terminal {
+      display: flex;
+      flex-direction: column;
+      height: 480px;
+      background: rgba(9, 12, 16, 0.6);
+    }
+    .chat-messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .message {
+      max-width: 82%;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+    .bot-msg {
+      align-self: flex-start;
+      background: rgba(22, 27, 34, 0.9);
+      border: 1px solid var(--card-border);
+      color: #e6edf3;
+      border-bottom-left-radius: 2px;
+    }
+    .user-msg {
+      align-self: flex-end;
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      color: #0b0f19;
+      font-weight: 500;
+      border-bottom-right-radius: 2px;
+    }
+    .chat-input-area {
+      padding: 16px 20px;
+      border-top: 1px solid var(--card-border);
+      display: flex;
+      gap: 10px;
+      background: rgba(13, 17, 23, 0.8);
+    }
+    .chat-input-area input {
+      flex: 1;
+      background: rgba(22, 27, 34, 0.9);
+      border: 1px solid var(--card-border);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      outline: none;
+    }
+    .chat-input-area input:focus {
+      border-color: var(--primary);
+    }
+    .chat-send-btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    .chat-send-btn:hover {
+      background: #9333ea;
+    }
+
+    /* Contact Section */
+    .contact-form {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 30px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      background: rgba(9, 12, 16, 0.6);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      color: var(--text-main);
+      font-family: inherit;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-content {
+      background: #161b22;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      max-width: 500px;
+      width: 100%;
+      padding: 24px;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 36px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="glow-circle glow-1"></div>
+  <div class="glow-circle glow-2"></div>
+
+  <!-- Navigation with Name at Top -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="#" class="brand">
+        <i class="fa-solid fa-terminal"></i> Rupesh Rawat
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#ai-tool" class="nav-btn"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Tool</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">
+        <i class="fa-solid fa-microchip"></i> Electronics & Computer Engineering
+      </div>
+      <h1>Building the Future with<br><span>Hardware, Code & AI</span></h1>
+      <p>
+        Hi, I'm <strong>Rupesh Rawat</strong>. I engineer embedded systems, build interactive web applications, and experiment with intelligent developer tools.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-layer-group"></i> View Projects</a>
+        <a href="#ai-tool" class="btn btn-secondary"><i class="fa-solid fa-robot"></i> Open AI Assistant</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-subtitle">A glimpse into my background, studies, and engineering interests.</p>
+      <div class="card">
+        <p style="margin-bottom: 12px; font-size: 1.05rem;">
+          I am a diploma student in <strong>Electronics and Computer Engineering</strong> at <strong>Vidyalankar Polytechnic, Mumbai</strong>. My passion lies at the intersection of embedded microcontrollers, IoT devices, and full-stack software development.
+        </p>
+        <p style="font-size: 0.95rem; color: var(--text-muted);">
+          Whether it is wiring ultrasonic sensors to an ESP32 or structuring clean web frontends on GitHub Pages, I focus on building practical, tangible solutions.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-subtitle">Prototypes and software solutions I have engineered.</p>
+      <div class="grid">
+        <div class="card" onclick="openModal('ESP32 Smart Parking System', 'An automated parking management prototype utilizing ultrasonic sensors to monitor vehicle space occupancy, process sensor inputs on an ESP32 board, and display live availability.')" style="cursor: pointer;">
+          <div class="card-icon"><i class="fa-solid fa-square-parking"></i></div>
+          <h3>ESP32 Smart Parking System</h3>
+          <p>IoT-based prototype with ultrasonic sensors and real-time slot occupancy tracking.</p>
+          <div class="tags">
+            <span class="tag">ESP32</span>
+            <span class="tag">Sensors</span>
+            <span class="tag">IoT</span>
+            <span class="tag">C++</span>
+          </div>
+        </div>
+
+        <div class="card" onclick="openModal('Developer Portfolio Hub', 'Designed and published responsive web layouts using semantic HTML5, modern CSS3 styling, and automated GitHub Pages CI/CD workflow.')" style="cursor: pointer;">
+          <div class="card-icon"><i class="fa-solid fa-globe"></i></div>
+          <h3>Personal Portfolio & Web Hub</h3>
+          <p>Clean, dark-mode developer hub deployed directly via GitHub Pages.</p>
+          <div class="tags">
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS3</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">GitHub</span>
+          </div>
+        </div>
+
+        <div class="card" onclick="openModal('Tournament Operations Suite', 'Formulated knockout rules, bracket seeding algorithms, and live schedule trackers for community gaming tournaments.')" style="cursor: pointer;">
+          <div class="card-icon"><i class="fa-solid fa-gamepad"></i></div>
+          <h3>Community Tournament System</h3>
+          <p>Structured schedule brackets and matchmaking guidelines for digital competitions.</p>
+          <div class="tags">
+            <span class="tag">Bracket Seeding</span>
+            <span class="tag">Operations</span>
+            <span class="tag">Community</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title">Technical Skills</h2>
+      <p class="section-subtitle">Tools, languages, and hardware technologies I work with.</p>
+      <div class="grid">
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-code"></i></div>
+          <h3>Programming & Web</h3>
+          <p>Python, C++, HTML5, CSS3, JavaScript</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
+          <h3>Hardware & Systems</h3>
+          <p>ESP32 Controller, Ultrasonic Sensors, IoT Prototyping, Hardware Debugging</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+          <h3>Tools & Workflow</h3>
+          <p>Visual Studio Code, Git, GitHub Pages, AI Tooling</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education">
+    <div class="container">
+      <h2 class="section-title">Education</h2>
+      <p class="section-subtitle">Academic foundations in engineering.</p>
+      <div class="edu-card">
+        <div class="edu-title">Diploma in Electronics and Computer Engineering</div>
+        <div class="edu-inst">Vidyalankar Polytechnic, Mumbai</div>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;">
+          Focusing on microcontroller systems, circuit design, computer hardware fundamentals, and software development.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="section-subtitle">Have a project, opportunity, or question? Send a message.</p>
+      <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent successfully! Rupesh will get back to you.');">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="John Doe" required>
+        </div>
+        <div class="form-group">
+          <label>Your Email</label>
+          <input type="email" placeholder="john@example.com" required>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea rows="4" placeholder="Hi Rupesh, let's collaborate..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- AI TOOL SECTION (Located at the bottom) -->
+  <section id="ai-tool">
+    <div class="container">
+      <h2 class="section-title"><i class="fa-solid fa-sparkles"></i> Rupesh AI Assistant</h2>
+      <p class="section-subtitle">An embedded AI assistant trained on Rupesh's projects, coursework, and technical skills.</p>
+      
+      <div class="ai-wrapper">
+        <!-- Sidebar Controls -->
+        <div class="ai-sidebar">
+          <div class="ai-tool-header">
+            <i class="fa-solid fa-brain"></i> Ask Rupesh AI
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">
+            Click a preset prompt or type your query in the terminal:
+          </p>
+          <div class="ai-presets">
+            <button class="preset-btn" onclick="askPreset('Tell me about your ESP32 Smart Parking System')">
+              <i class="fa-solid fa-car"></i> Smart Parking System
+            </button>
+            <button class="preset-btn" onclick="askPreset('What technical skills do you have?')">
+              <i class="fa-solid fa-code"></i> Tech Stack & Skills
+            </button>
+            <button class="preset-btn" onclick="askPreset('Where do you study and what is your focus?')">
+              <i class="fa-solid fa-graduation-cap"></i> Academics & College
+            </button>
+            <button class="preset-btn" onclick="askPreset('How can I contact Rupesh?')">
+              <i class="fa-solid fa-envelope"></i> Contact Details
+            </button>
+          </div>
+        </div>
+
+        <!-- Chat Terminal -->
+        <div class="ai-terminal">
+          <div class="chat-messages" id="chatBox">
+            <div class="message bot-msg">
+              👋 <strong>Hi!</strong> I am Rupesh's virtual portfolio assistant. Feel free to ask about his IoT prototypes, engineering diploma at Vidyalankar Polytechnic, or code skillset!
+            </div>
+          </div>
+          <div class="chat-input-area">
+            <input type="text" id="userInput" placeholder="Ask anything about Rupesh's work or skills..." onkeypress="handleKey(event)" />
+            <button class="chat-send-btn" onclick="sendQuery()"><i class="fa-solid fa-paper-plane"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Details Modal -->
+  <div class="modal" id="projectModal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal()">&times;</span>
+      <h3 id="modalTitle" style="margin-bottom: 12px; font-size: 1.3rem;"></h3>
+      <p id="modalBody" style="color: var(--text-muted); font-size: 0.95rem;"></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2026 Rupesh Rawat. Powered by HTML5, CSS3, JS & Embedded AI.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Project Modal Logic
+    function openModal(title, body) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalBody').innerText = body;
+      document.getElementById('projectModal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('projectModal').style.display = 'none';
+    }
+    window.onclick = function(e) {
+      const modal = document.getElementById('projectModal');
+      if (e.target === modal) closeModal();
+    };
+
+    // AI Knowledge Base & Assistant Logic
+    const knowledgeBase = {
+      parking: "Rupesh engineered an IoT-based Smart Parking System prototype using an ESP32 microcontroller and ultrasonic sensors to detect vehicle presence in real-time and streamline parking allocations.",
+      skills: "Rupesh's technical skillset includes Python, C++, HTML5, CSS3, embedded prototyping with ESP32 microcontrollers, Git/GitHub, and AI workflow tools.",
+      study: "Rupesh is studying Electronics and Computer Engineering at Vidyalankar Polytechnic in Mumbai, focusing on practical engineering and software development.",
+      contact: "You can reach Rupesh via the contact form on this page or through his GitHub profile.",
+      default: "Rupesh Rawat is an Electronics and Computer Engineering student specializing in IoT systems (ESP32), Python, web development, and digital technology integration."
+    };
+
+    function appendMessage(text, isUser = false) {
+      const chatBox = document.getElementById('chatBox');
+      const msg = document.createElement('div');
+      msg.className = `message ${isUser ? 'user-msg' : 'bot-msg'}`;
+      msg.innerText = text;
+      chatBox.appendChild(msg);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function processAIResponse(input) {
+      const q = input.toLowerCase();
+      if (q.includes("park") || q.includes("esp32") || q.includes("sensor")) {
+        return knowledgeBase.parking;
+      } else if (q.includes("skill") || q.includes("tech") || q.includes("stack") || q.includes("language")) {
+        return knowledgeBase.skills;
+      } else if (q.includes("study") || q.includes("college") || q.includes("education") || q.includes("vidyalankar")) {
+        return knowledgeBase.study;
+      } else if (q.includes("contact") || q.includes("reach") || q.includes("email")) {
+        return knowledgeBase.contact;
+      } else {
+        return knowledgeBase.default;
+      }
+    }
+
+    function sendQuery() {
+      const input = document.getElementById('userInput');
+      const val = input.value.trim();
+      if (!val) return;
+
+      appendMessage(val, true);
+      input.value = "";
+
+      setTimeout(() => {
+        const reply = processAIResponse(val);
+        appendMessage(reply, false);
+      }, 400);
+    }
+
+    function askPreset(promptText) {
+      document.getElementById('userInput').value = promptText;
+      sendQuery();
+    }
+
+    function handleKey(e) {
+      if (e.key === 'Enter') sendQuery();
+    }
+  </script>
+</body>
+</html>
